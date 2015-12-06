@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3a33e7b25da44ddc85ed91f8c80e240c" Name="Diagram1" ZoomLevel="109" ShowGrid="true" >
+        <EntityTypeShape EntityType="LocalDatabaseModel.Tour" Width="2.125" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="LocalDatabaseModel.Departure" Width="2.125" PointX="7.5" PointY="2" />
+        <EntityTypeShape EntityType="LocalDatabaseModel.FlightReservation" Width="2.125" PointX="12.125" PointY="2" />
+        <EntityTypeShape EntityType="LocalDatabaseModel.Reservation" Width="2.125" PointX="12.25" PointY="5.875" />
+        <EntityTypeShape EntityType="LocalDatabaseModel.Comment" Width="2.125" PointX="16.625" PointY="5.375" />
+        <EntityTypeShape EntityType="LocalDatabaseModel.Customer" Width="2.125" PointX="14.375" PointY="10.625" />
+        <EntityTypeShape EntityType="LocalDatabaseModel.RoomType" Width="2.125" PointX="7.625" PointY="5.875" />
+        <EntityTypeShape EntityType="LocalDatabaseModel.Hotel" Width="2.125" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="LocalDatabaseModel.RoomReservation" Width="2.125" PointX="7.625" PointY="9.75" />
+        <AssociationConnector Association="LocalDatabaseModel.TourDeparture" />
+        <AssociationConnector Association="LocalDatabaseModel.HotelRoomType" />
+        <AssociationConnector Association="LocalDatabaseModel.FlightReservationReservation" />
+        <AssociationConnector Association="LocalDatabaseModel.ReservationComment" />
+        <AssociationConnector Association="LocalDatabaseModel.CustomerReservation" />
+        <AssociationConnector Association="LocalDatabaseModel.CustomerReservation1" />
+        <AssociationConnector Association="LocalDatabaseModel.ReservationRoomResetvation" />
+        <AssociationConnector Association="LocalDatabaseModel.DepartureFlightReservation" />
+        <AssociationConnector Association="LocalDatabaseModel.FlightReservationDeparture" />
+        <AssociationConnector Association="LocalDatabaseModel.CustomerComment" />
+        <AssociationConnector Association="LocalDatabaseModel.RoomTypeReservation" />
+        <AssociationConnector Association="LocalDatabaseModel.RoomTypeRoomResetvation" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

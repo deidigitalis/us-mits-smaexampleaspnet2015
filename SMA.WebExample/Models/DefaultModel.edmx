@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LocalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="LocalDatabaseModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LocalDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LocalDatabaseEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Tour" EntityType="LocalDatabaseModel.Tour" />
+          <EntitySet Name="Departure" EntityType="LocalDatabaseModel.Departure" />
+          <EntitySet Name="Reservation" EntityType="LocalDatabaseModel.Reservation" />
+          <EntitySet Name="Comment" EntityType="LocalDatabaseModel.Comment" />
+          <EntitySet Name="Customer" EntityType="LocalDatabaseModel.Customer" />
+          <EntitySet Name="RoomType" EntityType="LocalDatabaseModel.RoomType" />
+          <EntitySet Name="Hotel" EntityType="LocalDatabaseModel.Hotel" />
+          <EntitySet Name="RoomResetvation" EntityType="LocalDatabaseModel.RoomReservation" />
+          <AssociationSet Name="TourDeparture" Association="LocalDatabaseModel.TourDeparture">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="Departure" EntitySet="Departure" />
+          </AssociationSet>
+          <EntitySet Name="FlightReservation" EntityType="LocalDatabaseModel.FlightReservation" />
+          <AssociationSet Name="HotelRoomType" Association="LocalDatabaseModel.HotelRoomType">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="RoomType" EntitySet="RoomType" />
+          </AssociationSet>
+          <AssociationSet Name="FlightReservationReservation" Association="LocalDatabaseModel.FlightReservationReservation">
+            <End Role="FlightReservation" EntitySet="FlightReservation" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="ReservationComment" Association="LocalDatabaseModel.ReservationComment">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerReservation" Association="LocalDatabaseModel.CustomerReservation">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerReservation1" Association="LocalDatabaseModel.CustomerReservation1">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="ReservationRoomResetvation" Association="LocalDatabaseModel.ReservationRoomResetvation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="RoomResetvation" EntitySet="RoomResetvation" />
+          </AssociationSet>
+          <AssociationSet Name="DepartureFlightReservation" Association="LocalDatabaseModel.DepartureFlightReservation">
+            <End Role="Departure" EntitySet="Departure" />
+            <End Role="FlightReservation" EntitySet="FlightReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FlightReservationDeparture" Association="LocalDatabaseModel.FlightReservationDeparture">
+            <End Role="FlightReservation" EntitySet="FlightReservation" />
+            <End Role="Departure" EntitySet="Departure" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerComment" Association="LocalDatabaseModel.CustomerComment">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="RoomTypeReservation" Association="LocalDatabaseModel.RoomTypeReservation">
+            <End Role="RoomType" EntitySet="RoomType" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="RoomTypeRoomResetvation" Association="LocalDatabaseModel.RoomTypeRoomResetvation">
+            <End Role="RoomType" EntitySet="RoomType" />
+            <End Role="RoomResetvation" EntitySet="RoomResetvation" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="TourId" />
+          </Key>
+          <Property Name="TourId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Resort" Type="String" Nullable="false" />
+          <NavigationProperty Name="Departure" Relationship="LocalDatabaseModel.TourDeparture" FromRole="Tour" ToRole="Departure" />
+        </EntityType>
+        <EntityType Name="Departure">
+          <Key>
+            <PropertyRef Name="DepartureId" />
+          </Key>
+          <Property Name="DepartureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartureDate" Type="DateTime" Nullable="false" />
+          <Property Name="ReturnDate" Type="DateTime" Nullable="false" />
+          <Property Name="SeatsAvailableDeparture" Type="Int32" Nullable="false" />
+          <Property Name="SeatsAvailableReturn" Type="Int32" Nullable="false" />
+          <Property Name="DeparturePlace" Type="String" Nullable="false" />
+          <Property Name="Destination" Type="String" Nullable="false" />
+          <NavigationProperty Name="Tour" Relationship="LocalDatabaseModel.TourDeparture" FromRole="Departure" ToRole="Tour" />
+          <NavigationProperty Name="FlightReservationTours" Relationship="LocalDatabaseModel.DepartureFlightReservation" FromRole="Departure" ToRole="FlightReservation" />
+          <NavigationProperty Name="FlightReservationRetours" Relationship="LocalDatabaseModel.FlightReservationDeparture" FromRole="Departure" ToRole="FlightReservation" />
+        </EntityType>
+        <EntityType Name="FlightReservation">
+          <Key>
+            <PropertyRef Name="FlightReservationId" />
+          </Key>
+          <Property Name="FlightReservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="From" Type="String" Nullable="false" />
+          <Property Name="ReservedSeats" Type="String" Nullable="false" />
+          <Property Name="To" Type="String" Nullable="false" />
+          <Property Name="DateOfFlight" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Reservation" Relationship="LocalDatabaseModel.FlightReservationReservation" FromRole="FlightReservation" ToRole="Reservation" />
+          <NavigationProperty Name="Tour" Relationship="LocalDatabaseModel.DepartureFlightReservation" FromRole="FlightReservation" ToRole="Departure" />
+          <NavigationProperty Name="Retours" Relationship="LocalDatabaseModel.FlightReservationDeparture" FromRole="FlightReservation" ToRole="Departure" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationId" />
+          </Key>
+          <Property Name="ReservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State" Type="String" Nullable="false" />
+          <Property Name="HowMade" Type="String" Nullable="false" />
+          <NavigationProperty Name="FlightReservation" Relationship="LocalDatabaseModel.FlightReservationReservation" FromRole="Reservation" ToRole="FlightReservation" />
+          <NavigationProperty Name="Comments" Relationship="LocalDatabaseModel.ReservationComment" FromRole="Reservation" ToRole="Comment" />
+          <NavigationProperty Name="Payer" Relationship="LocalDatabaseModel.CustomerReservation" FromRole="Reservation" ToRole="Customer" />
+          <NavigationProperty Name="Traveler" Relationship="LocalDatabaseModel.CustomerReservation1" FromRole="Reservation" ToRole="Customer" />
+          <NavigationProperty Name="Rooms" Relationship="LocalDatabaseModel.ReservationRoomResetvation" FromRole="Reservation" ToRole="RoomResetvation" />
+          <NavigationProperty Name="RoomType" Relationship="LocalDatabaseModel.RoomTypeReservation" FromRole="Reservation" ToRole="RoomType" />
+          <Property Name="RoomTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PayerId" Type="Int32" Nullable="false" />
+          <Property Name="TravelerId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateMade" Type="DateTime" Nullable="false" />
+          <Property Name="CommentText" Type="String" Nullable="false" />
+          <NavigationProperty Name="Reservation" Relationship="LocalDatabaseModel.ReservationComment" FromRole="Comment" ToRole="Reservation" />
+          <NavigationProperty Name="Customer" Relationship="LocalDatabaseModel.CustomerComment" FromRole="Comment" ToRole="Customer" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="ReservationId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="DateOfBirth" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <NavigationProperty Name="Pays" Relationship="LocalDatabaseModel.CustomerReservation" FromRole="Customer" ToRole="Reservation" />
+          <NavigationProperty Name="Reservations" Relationship="LocalDatabaseModel.CustomerReservation1" FromRole="Customer" ToRole="Reservation" />
+          <NavigationProperty Name="Comments" Relationship="LocalDatabaseModel.CustomerComment" FromRole="Customer" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="RoomType">
+          <Key>
+            <PropertyRef Name="RoomTypeId" />
+          </Key>
+          <Property Name="RoomTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoBeds" Type="Int32" Nullable="false" />
+          <Property Name="Facilities" Type="String" Nullable="false" />
+          <Property Name="HowMany" Type="Int32" Nullable="false" />
+          <Property Name="IsExtaBedPossible" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Hotel" Relationship="LocalDatabaseModel.HotelRoomType" FromRole="RoomType" ToRole="Hotel" />
+          <Property Name="HotelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reservation" Relationship="LocalDatabaseModel.RoomTypeReservation" FromRole="RoomType" ToRole="Reservation" />
+          <NavigationProperty Name="RoomResetvation" Relationship="LocalDatabaseModel.RoomTypeRoomResetvation" FromRole="RoomType" ToRole="RoomResetvation" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelId" />
+          </Key>
+          <Property Name="HotelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="HotelType" Type="String" Nullable="false" />
+          <NavigationProperty Name="RoomType" Relationship="LocalDatabaseModel.HotelRoomType" FromRole="Hotel" ToRole="RoomType" />
+        </EntityType>
+        <EntityType Name="RoomReservation">
+          <Key>
+            <PropertyRef Name="RoomResetvationId" />
+          </Key>
+          <Property Name="RoomResetvationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpecialRequest" Type="String" Nullable="false" />
+          <Property Name="IsExtraBedNeeded" Type="String" Nullable="false" />
+          <NavigationProperty Name="Reservation" Relationship="LocalDatabaseModel.ReservationRoomResetvation" FromRole="RoomResetvation" ToRole="Reservation" />
+          <Property Name="RoomTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RoomType" Relationship="LocalDatabaseModel.RoomTypeRoomResetvation" FromRole="RoomResetvation" ToRole="RoomType" />
+          <Property Name="ReservationId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="TourDeparture">
+          <End Type="LocalDatabaseModel.Tour" Role="Tour" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.Departure" Role="Departure" Multiplicity="*" />
+        </Association>
+        <Association Name="HotelRoomType">
+          <End Type="LocalDatabaseModel.Hotel" Role="Hotel" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.RoomType" Role="RoomType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="RoomType">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FlightReservationReservation">
+          <End Type="LocalDatabaseModel.FlightReservation" Role="FlightReservation" Multiplicity="0..1" />
+          <End Type="LocalDatabaseModel.Reservation" Role="Reservation" Multiplicity="*" />
+        </Association>
+        <Association Name="ReservationComment">
+          <End Type="LocalDatabaseModel.Reservation" Role="Reservation" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerReservation">
+          <End Type="LocalDatabaseModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.Reservation" Role="Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="PayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerReservation1">
+          <End Type="LocalDatabaseModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.Reservation" Role="Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="TravelerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReservationRoomResetvation">
+          <End Type="LocalDatabaseModel.Reservation" Role="Reservation" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.RoomReservation" Role="RoomResetvation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationId" />
+            </Principal>
+            <Dependent Role="RoomResetvation">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DepartureFlightReservation">
+          <End Type="LocalDatabaseModel.Departure" Role="Departure" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.FlightReservation" Role="FlightReservation" Multiplicity="*" />
+        </Association>
+        <Association Name="FlightReservationDeparture">
+          <End Type="LocalDatabaseModel.FlightReservation" Role="FlightReservation" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.Departure" Role="Departure" Multiplicity="*" />
+        </Association>
+        <Association Name="CustomerComment">
+          <End Type="LocalDatabaseModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomTypeReservation">
+          <End Type="LocalDatabaseModel.RoomType" Role="RoomType" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.Reservation" Role="Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomType">
+              <PropertyRef Name="RoomTypeId" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="RoomTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomTypeRoomResetvation">
+          <End Type="LocalDatabaseModel.RoomType" Role="RoomType" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.RoomReservation" Role="RoomResetvation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomType">
+              <PropertyRef Name="RoomTypeId" />
+            </Principal>
+            <Dependent Role="RoomResetvation">
+              <PropertyRef Name="RoomTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LocalDatabaseModelStoreContainer" CdmEntityContainer="LocalDatabaseEntities" />
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
